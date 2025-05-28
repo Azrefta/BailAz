@@ -220,14 +220,3 @@ Found a bug or have a feature request? Open an [issue here](https://github.com/n
 Everything other than the modifications mentioned above remains the same as the original repository. You can check out the original repository at [WhiskeySockets](https://github.com/WhiskeySockets/Baileys)
 
 > # [BailAz Repository](https://github.com/Azrefta/BailPatch)
-
-```
-
-### Perubahan Kunci:
-- Bahasa lebih ekspresif dan komunikatif.
-- Struktur visual lebih konsisten dan elegan.
-- Elemen visual seperti emoji dan gambar disusun agar menarik dan tetap profesional.
-- Penempatan banner, bot profile, dan informasi tambahan dilakukan dengan format yang clean dan terfokus.
-
-Jika Anda ingin saya bantu buat README versi HTML, dokumentasi interaktif, atau banner tambahan, saya siap bantu juga.
-```
