@@ -199,13 +199,14 @@ if (usePairingCode && !sock.authState.creds.registered) {
 
 ---
 
+## 🤖 Official Bot
+
 <table>
   <tr>
     <td width="170">
       <img src="https://i.pinimg.com/736x/ae/c5/e3/aec5e307938b583b61472f479f3f01fb.jpg" width="160" style="border-radius: 12px;">
     </td>
     <td>
-      <h2>🤖 Official Bot</h2>
       <p><strong>BRONYA RAND</strong> — the official bot powered by BailAz!</p>
       <p><strong>Status:</strong> Maintenance 🛠️</p>
     </td>
