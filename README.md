@@ -1,302 +1,233 @@
-# <div align='center'>Baileys - Typescript/Javascript WhatsApp Web API</div>
+# <div align="center">✨ BailAz - TypeScript/JavaScript WhatsApp Web API ✨</div>
 
-<div align="center"><img src="https://iili.io/2Zpjtlp.jpg"></div>
+<div align="center">
+  <img src="https://i.pinimg.com/736x/dd/df/ff/dddfff153f1819fce8aa07ccad5582ea.jpg" width="100%">
+</div>
 
-## Important Note
+---
 
-The original repository was initially removed by its creator and subsequently taken over by [WhiskeySockets](https://github.com/WhiskeySockets). Building upon this foundation, I have implemented several enhancements and introduced new features that were not present in the original repository. These improvements aim to elevate functionality and provide a more robust and versatile experience.
+## 🔔 Important Note
 
-## Install
+This is a **forked and enhanced version** of the original Baileys repository, which was once removed and later maintained by [WhiskeySockets](https://github.com/WhiskeySockets).
 
-Install in package.json:
+From that foundation, I've implemented numerous **new features**, **UI improvements**, and **functionality upgrades** that go far beyond what was previously available — designed to provide developers a smoother and more flexible experience.
+
+---
+
+## ⚙️ Installation
+
+**Via `package.json`:**
+
 ```json
 "dependencies": {
-    "baileys": "github:nstar-y/bail"
+  "baileys": "github:nstar-y/bail"
 }
-```
-or install in terminal:
-```
+````
+
+**Or install directly via terminal:**
+
+```bash
 npm install baileys@github:nstar-y/bail
 ```
 
-Then import the default function in your code:
-```ts 
-// type esm
+**Then import into your project:**
+
+```ts
+// For ESM
 import makeWASocket from 'baileys'
 ```
 
 ```js
-// type cjs
-const { default: makeWASocket } = require("baileys")
+// For CommonJS
+const { default: makeWASocket } = require('baileys')
 ```
 
-## Added Features and Improvements
-Here are some of the features and improvements I have added:
+---
 
-- **Support for Sending Messages to Channels**: You can now easily send messages to channels.
+## ✨ New Features & Improvements
 
-- **Support for Button Messages and Interactive Messages**: Added the ability to send messages with buttons and interactive messages.
+* 🧩 **Send Messages to Channels**
+* 🧠 **AI Icon Support for Chat Messages**
+* 📸 **Original-Size Profile Picture Uploads**
+* 🧾 **Support for Button and Interactive Messages**
+* 🔐 **Customizable Pairing Code**
+* 🔧 **Improved Libsignal Logs Cleanup**
 
-- **AI Message Icon**: Added customizable AI icon settings for messages
+More enhancements are planned in future updates!
 
-- **Profile Picture Settings**: Allows users to upload profile pictures in their original size without cropping, ensuring better quality and visual presentation.
+---
 
-- **Custom Pairing Code**: Users can now create and customize pairing codes as they wish, enhancing convenience and security when connecting devices.
+## 🚀 Feature Showcase
 
-- **Libsignal Fixes**: Cleaned up logs for a cleaner and more informative output.
+### 📣 Newsletter Features
 
-More features and improvements will be added in the future.
-
-## Feature Examples
-
-### NEWSLETTER
-
-- **To get info newsletter**
-``` ts
+```ts
 const metadata = await sock.newsletterMetadata("invite", "xxxxx")
 // or
 const metadata = await sock.newsletterMetadata("jid", "abcd@newsletter")
-console.log(metadata)
 ```
-- **To update the description of a newsletter**
-``` ts
+
+* Update Description:
+
+```ts
 await sock.newsletterUpdateDescription("abcd@newsletter", "New Description")
 ```
-- **To update the name of a newsletter**
-``` ts
+
+* Update Name:
+
+```ts
 await sock.newsletterUpdateName("abcd@newsletter", "New Name")
-```  
-- **To update the profile picture of a newsletter**
-``` ts
-await sock.newsletterUpdatePicture("abcd@newsletter", buffer)
 ```
-- **To remove the profile picture of a newsletter**
-``` ts
+
+* Set / Remove Picture:
+
+```ts
+await sock.newsletterUpdatePicture("abcd@newsletter", buffer)
 await sock.newsletterRemovePicture("abcd@newsletter")
 ```
-- **To mute notifications for a newsletter**
-``` ts
+
+* Mute / Unmute:
+
+```ts
+await sock.newsletterMute("abcd@newsletter")
 await sock.newsletterUnmute("abcd@newsletter")
 ```
-- **To mute notifications for a newsletter**
-``` ts
-await sock.newsletterMute("abcd@newsletter")
-```
-- **To create a newsletter**
-``` ts
-const metadata = await sock.newsletterCreate("Newsletter Name", "Newsletter Description")
-console.log(metadata)
-```
-- **To delete a newsletter**
-``` ts
+
+* Create / Delete / Follow / Unfollow:
+
+```ts
+const meta = await sock.newsletterCreate("Name", "Description")
 await sock.newsletterDelete("abcd@newsletter")
-```
-- **To follow a newsletter**
-``` ts
 await sock.newsletterFollow("abcd@newsletter")
-```
-- **To unfollow a newsletter**
-``` ts
 await sock.newsletterUnfollow("abcd@newsletter")
 ```
-- **To send reaction**
-``` ts
-// jid, id message & emoticon
-// way to get the ID is to copy the message url from channel
-// Example: [ https://whatsapp.com/channel/xxxxx/175 ]
-// The last number of the URL is the ID
-const id = "175"
-await sock.newsletterReactMessage("abcd@newsletter", id, "🥳")
+
+* React to Message:
+
+```ts
+await sock.newsletterReactMessage("abcd@newsletter", "175", "🥳")
 ```
 
-### BUTTON MESSAGE & INTERACTIVE MESSAGE
+---
 
-- **To send button with text**
+### 🖱️ Button & Interactive Messages
+
+#### Text Buttons
+
 ```ts
 const buttons = [
   { buttonId: 'id1', buttonText: { displayText: 'Button 1' }, type: 1 },
   { buttonId: 'id2', buttonText: { displayText: 'Button 2' }, type: 1 }
 ]
 
-const buttonMessage = {
-    text: "Hi it's button message",
-    footer: 'Hello World',
-    buttons,
-    headerType: 1,
-    viewOnce: true
+const msg = {
+  text: "Here's a button message!",
+  footer: 'Powered by BailAz',
+  buttons,
+  headerType: 1,
+  viewOnce: true
 }
 
-await sock.sendMessage(id, buttonMessage, { quoted: null })
+await sock.sendMessage(id, msg)
 ```
-- **To send button with image**
+
+#### Button with Media (Image/Video)
+
 ```ts
-const buttons = [
-  { buttonId: 'id1', buttonText: { displayText: 'Button 1' }, type: 1 },
-  { buttonId: 'id2', buttonText: { displayText: 'Button 2' }, type: 1 }
-]
-
-const buttonMessage = {
-    image: { url: "https://example.com/abcd.jpg" }, // image: buffer or path
-    caption: "Hi it's button message with image",
-    footer: 'Hello World',
-    buttons,
-    headerType: 1,
-    viewOnce: true
+const msg = {
+  image: { url: "https://example.com/image.jpg" }, // or video
+  caption: "Message with image!",
+  footer: 'BailAz Magic',
+  buttons,
+  headerType: 1,
+  viewOnce: true
 }
 
-await sock.sendMessage(id, buttonMessage, { quoted: null })
-
-```
-- **To send button with video**
-```ts
-const buttons = [
-  { buttonId: 'id1', buttonText: { displayText: 'Button 1' }, type: 1 },
-  { buttonId: 'id2', buttonText: { displayText: 'Button 2' }, type: 1 }
-]
-
-const buttonMessage = {
-    video: { url: "https://example.com/abcd.mp4" }, // video: buffer or path
-    caption: "Hi it's button message with video",
-    footer: 'Hello World',
-    buttons,
-    headerType: 1,
-    viewOnce: true
-}
-
-await sock.sendMessage(id, buttonMessage, { quoted: null })
+await sock.sendMessage(id, msg)
 ```
 
-- **To send interactive message**
+#### Interactive Message (Quick Reply, URL, Copy)
+
 ```ts
 const interactiveButtons = [
-     {
-        name: "quick_reply",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Quick Reply",
-             id: "ID"
-        })
-     },
-     {
-        name: "cta_url",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Tap Here!",
-             url: "https://www.example.com/"
-        })
-     },
-     {
-        name: "cta_copy",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Copy Code",
-             id: "12345",
-             copy_code: "12345"
-        })
-     }
+  {
+    name: "quick_reply",
+    buttonParamsJson: JSON.stringify({ display_text: "Quick Reply", id: "ID" })
+  },
+  {
+    name: "cta_url",
+    buttonParamsJson: JSON.stringify({ display_text: "Visit Site", url: "https://example.com" })
+  },
+  {
+    name: "cta_copy",
+    buttonParamsJson: JSON.stringify({ display_text: "Copy Code", id: "12345", copy_code: "12345" })
+  }
 ]
 
-const interactiveMessage = {
-    text: "Hello World!",
-    title: "this is the title",
-    footer: "this is the footer",
-    interactiveButtons
+const message = {
+  text: "Check this out!",
+  title: "Cool Title",
+  footer: "This is the footer",
+  interactiveButtons
 }
 
-await sock.sendMessage(id, interactiveMessage, { quoted: null })
-```
-- **To send interactive message with image**
-```ts
-const interactiveButtons = [
-     {
-        name: "quick_reply",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Quick Reply",
-             id: "ID"
-        })
-     },
-     {
-        name: "cta_url",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Tap Here!",
-             url: "https://www.example.com/"
-        })
-     },
-     {
-        name: "cta_copy",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Copy Code",
-             id: "12345",
-             copy_code: "12345"
-        })
-     }
-]
-
-const interactiveMessage = {
-    image: { url: "https://example.com/abcd.jpg" }, // image: buffer or path
-    caption: "this is the caption",
-    title: "this is the title",
-    footer: "this is the footer",
-    interactiveButtons
-}
-
-await sock.sendMessage(id, interactiveMessage, { quoted: null })
-```
-- **To send interactive message with video**
-```ts
-const interactiveButtons = [
-     {
-        name: "quick_reply",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Quick Reply",
-             id: "ID"
-        })
-     },
-     {
-        name: "cta_url",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Tap Here!",
-             url: "https://www.example.com/"
-        })
-     },
-     {
-        name: "cta_copy",
-        buttonParamsJson: JSON.stringify({
-             display_text: "Copy Code",
-             id: "12345",
-             copy_code: "12345"
-        })
-     }
-]
-
-const interactiveMessage = {
-    video: { url: "https://example.com/abcd.mp4" }, // video: buffer or path
-    caption: "this is the caption",
-    title: "this is the title",
-    footer: "this is the footer",
-    interactiveButtons
-}
-
-await sock.sendMessage(id, interactiveMessage, { quoted: null })
+await sock.sendMessage(id, message)
 ```
 
-### AI Icon
+---
+
+### 🤖 AI Chat Icon
+
+Want to show your message came from an AI? Just add this:
 
 ```ts
-// just add "ai: true" function to sendMessage
-await sock.sendMessage(id, { text: "Hello Wold", ai: true })
+await sock.sendMessage(id, { text: "I'm an AI!", ai: true })
 ```
 
-### Custom Code Pairing
+---
+
+### 🔐 Custom Pairing Code
 
 ```ts
-if(usePairingCode && !sock.authState.creds.registered) {
-    const phoneNumber = await question('Please enter your mobile phone number:\n')
-    const custom = "NSTRCODE" // must be 8 digits, can be letters or numbers
-    const code = await sock.requestPairingCode(phoneNumber, custom)
-    console.log(`Pairing code: ${code?.match(/.{1,4}/g)?.join('-') || code}`)
+if (usePairingCode && !sock.authState.creds.registered) {
+  const phoneNumber = await question('Enter your mobile number:\n')
+  const custom = "NSTRCODE" // Must be exactly 8 alphanumeric characters
+  const code = await sock.requestPairingCode(phoneNumber, custom)
+  console.log(`Pairing code: ${code?.match(/.{1,4}/g)?.join('-') || code}`)
 }
 ```
 
-## Reporting Issues
-If you encounter any issues while using this repository or any part of it, please feel free to open a [new issue](https://github.com/nstar-y/Bail/issues) here.
+---
 
-## Notes
-Everything other than the modifications mentioned above remains the same as the original repository. You can check out the original repository at [WhiskeySockets](https://github.com/WhiskeySockets/Baileys)# BailPatch
+## 🤖 Official Bot
+
+Meet **BRONYA RAND** — the official bot powered by BailAz!
+
+<div align="center">
+  <img src="https://i.pinimg.com/736x/ae/c5/e3/aec5e307938b583b61472f479f3f01fb.jpg" width="160" style="border-radius: 12px;">
+</div>
+
+---
+
+## 🛠 Reporting Issues
+
+Found a bug or have a feature request? Open an [issue here](https://github.com/nstar-y/Bail/issues) and let's improve together!
+
+---
+
+## 📝 Notes
+
+Everything other than the modifications mentioned above remains the same as the original repository. You can check out the original repository at [WhiskeySockets](https://github.com/WhiskeySockets/Baileys)
+
+> # [BailAz Repository](https://github.com/Azrefta/BailPatch)
+
+```
+
+### Perubahan Kunci:
+- Bahasa lebih ekspresif dan komunikatif.
+- Struktur visual lebih konsisten dan elegan.
+- Elemen visual seperti emoji dan gambar disusun agar menarik dan tetap profesional.
+- Penempatan banner, bot profile, dan informasi tambahan dilakukan dengan format yang clean dan terfokus.
+
+Jika Anda ingin saya bantu buat README versi HTML, dokumentasi interaktif, atau banner tambahan, saya siap bantu juga.
+```
